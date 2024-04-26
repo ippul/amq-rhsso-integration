@@ -1,0 +1,7 @@
+apiVersion: v2
+name: plain-sso-amq-integraion
+description: Keycloak AMQ authentication example
+
+type: application
+
+version: 1.0.0

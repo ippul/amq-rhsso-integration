@@ -1,0 +1,5 @@
+
+rhsso:
+  authServerUrl: https://keycloak-example.apps-crc.testing/auth
+amq:
+  console: https://ex-aao-wconsj-0-svc-rte-amq-sso.apps.apps-crc.testing/console/*

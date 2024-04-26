@@ -1,0 +1,44 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: amq-producer
+  labels:
+    app: amq-producer
+    app.kubernetes.io/component: amq-producer
+    app.kubernetes.io/instance: amq-producer
+    app.kubernetes.io/name: amq-producer
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: openjdk-17-ubi8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: amq-producer
+  template:
+    metadata:
+      labels:
+        app: amq-producer
+        deployment: amq-producer
+    spec:
+      containers:
+        - name: amq-producer
+          image: 'image-registry.openshift-image-registry.svc:5000/{{ .Release.Namespace }}/amq-producer:latest'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8443
+              protocol: TCP
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600

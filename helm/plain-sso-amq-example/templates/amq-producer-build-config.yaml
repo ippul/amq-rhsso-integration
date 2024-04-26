@@ -1,0 +1,48 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: amq-producer
+  labels:
+    app: amq-producer
+    app.kubernetes.io/component: amq-producer
+    app.kubernetes.io/instance: amq-producer
+    app.kubernetes.io/name: amq-producer
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: openjdk-17-ubi8
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'amq-producer:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 2
+  failedBuildsHistoryLimit: 1
+  strategy:
+    type: Source
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        namespace: openshift
+        name: 'java:openjdk-17-ubi8'
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/ippul/amq-auth-keycloak.git'
+    contextDir: /amq-producer
+    configMaps:
+      - configMap:
+          name: maven-settings
+        destinationDir: .
+  triggers:
+    - type: Generic
+      generic:
+        secretReference:
+          name: amq-producer-generic-webhook-secret
+    - type: GitHub
+      github:
+        secretReference:
+          name: amq-producer-github-webhook-secret
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
+  runPolicy: Serial

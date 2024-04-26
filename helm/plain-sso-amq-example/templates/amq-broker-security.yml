@@ -1,0 +1,92 @@
+---
+apiVersion: broker.amq.io/v1beta1
+kind: ActiveMQArtemisSecurity
+metadata:
+  name: rhsso-security
+spec:
+  loginModules:
+    keycloakLoginModules:
+    - name: login-rhsso-broker-module
+      moduleType: directAccess
+      configuration:
+        realm: amq-broker-realm
+        resource: amq-broker
+        authServerUrl: {{ .Values.rhsso.authServerUrl }}
+        principalAttribute: preferred_username
+        useResourceRoleMappings: true
+        verifyTokenAudience: true
+        sslRequired: all
+        confidentialPort: 0
+        enableBasicAuth: true
+        credentials:
+        - key: secret
+          value: amq-broker-secret-value
+    propertiesLoginModules:
+    - name: prop-module
+  securityDomains:
+    brokerDomain:
+      name: activemq
+      loginModules:
+      - name: login-rhsso-broker-module
+        flag: required
+        debug: true
+  securitySettings:
+    broker:
+      - match: '#'
+        permissions:
+        - operationType: createAddress
+          roles:
+          - admin
+          - consumer
+          - sender
+        - operationType: deleteAddress
+          roles:
+          - admin
+        - operationType: createDurableQueue
+          roles:
+          - admin
+          - consumer
+          - sender
+        - operationType: deleteDurableQueue
+          roles:
+          - admin
+        - operationType: createNonDurableQueue
+          roles:
+          - admin
+          - consumer
+          - sender
+        - operationType: deleteNonDurableQueue
+          roles:
+          - admin
+        - operationType: send
+          roles:
+          - admin
+          - consumer
+          - sender
+        - operationType: consume
+          roles:
+          - admin
+          - consumer
+          - sender
+        - operationType: browse
+          roles:
+          - admin
+          - consumer
+          - sender
+      - match: 'activemq.management.#'
+        permissions:
+        - operationType: 'createNonDurableQueue'
+          roles:
+          - 'admin'
+        - operationType: 'createAddress'
+          roles:
+          - 'admin'
+        - operationType: 'consume'
+          roles:
+          - 'admin'
+        - operationType: 'manage'
+          roles:
+          - 'admin'
+        - operationType: 'send'
+          roles:
+          - 'admin'
