@@ -27,7 +27,7 @@ spec:
   source:
     type: Git
     git:
-      uri: 'https://github.com/ippul/amq-auth-keycloak.git'
+      uri: 'https://github.com/ippul/amq-rhsso-integration.git'
     contextDir: /amq-clients-example
     configMaps:
       - configMap:
