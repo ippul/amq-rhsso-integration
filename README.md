@@ -2,8 +2,8 @@
 
 ## Prepare installation
 ```
-oc extract secret/router-certs-default -n openshift-ingress --keys=tls.crt --confirm
-keytool -import -noprompt -file tls.crt -alias .apps-crc.testing -keystore helm/plain-sso-amq-example/truststore/truststore.jks -storepass password
+oc extract secret/router-certs-default -n openshift-ingress --keys=tls.crt --to=/tmp --confirm
+keytool -import -noprompt -file /tmp/tls.crt -alias .apps-crc.testing -keystore helm/plain-sso-amq-example/truststore/truststore.jks -storepass password
 ```
 
 ## Install operators chart
