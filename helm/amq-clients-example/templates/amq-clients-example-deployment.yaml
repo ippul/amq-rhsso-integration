@@ -24,11 +24,6 @@ spec:
       - name: ippul-secret
         secret:
           secretName: credential-amq-broker-realm-ippul-example
-          items:
-          - key: username
-            path: username
-          - key: password
-            path: password
       containers:
         - name: amq-clients-example
           env:
