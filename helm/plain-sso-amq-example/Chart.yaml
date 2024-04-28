@@ -1,6 +1,6 @@
 apiVersion: v2
 name: plain-sso-amq-integraion
-description: Keycloak AMQ authentication example
+description: RHSSO AMQ authentication example
 
 type: application
 

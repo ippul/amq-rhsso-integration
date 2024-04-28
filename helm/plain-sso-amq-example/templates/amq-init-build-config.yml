@@ -21,7 +21,7 @@ spec:
   - imageChange:
       from:
         kind: ImageStreamTag
-        name: amq-broker-init-rhel8:7.10-38.1675807822
+        name: amq-broker-init-rhel8:{{ .Values.amq.init.tag }}
         namespace: {{ .Release.Namespace }}
     type: ImageChange
   strategy:
@@ -29,7 +29,7 @@ spec:
     dockerStrategy:
       from:
         kind: ImageStreamTag
-        name: 'amq-broker-init-rhel8:7.10-38.1675807822'
+        name: 'amq-broker-init-rhel8:{{ .Values.amq.init.tag }}'
       volumes:
         - name: post-config
           source:

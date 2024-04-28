@@ -4,7 +4,7 @@ kind: Keycloak
 metadata:
   name: amq-broker-sso
   labels:
-    app: sso
+    app: rhsso
 spec:
   instances: 1
   externalAccess:

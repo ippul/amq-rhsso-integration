@@ -38,7 +38,7 @@ spec:
           roles:
           - admin
           - consumer
-          - sender
+          - producer
         - operationType: deleteAddress
           roles:
           - admin
@@ -46,7 +46,7 @@ spec:
           roles:
           - admin
           - consumer
-          - sender
+          - producer
         - operationType: deleteDurableQueue
           roles:
           - admin
@@ -54,7 +54,7 @@ spec:
           roles:
           - admin
           - consumer
-          - sender
+          - producer
         - operationType: deleteNonDurableQueue
           roles:
           - admin
@@ -62,17 +62,17 @@ spec:
           roles:
           - admin
           - consumer
-          - sender
+          - producer
         - operationType: consume
           roles:
           - admin
           - consumer
-          - sender
+          - producer
         - operationType: browse
           roles:
           - admin
           - consumer
-          - sender
+          - producer
       - match: 'activemq.management.#'
         permissions:
         - operationType: 'createNonDurableQueue'

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: amq-clients-example
+description: AMQ producer and consumer
+
+type: application
+
+version: 1.0.0

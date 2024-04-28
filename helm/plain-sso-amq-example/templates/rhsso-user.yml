@@ -1,0 +1,28 @@
+---
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakUser
+metadata:
+  name: ippul
+  labels:
+    app: rhsso
+spec:
+  user:
+    username: "ippul"
+    firstName: "Claudio"
+    lastName: "User"
+    enabled: true
+    emailVerified: false
+    credentials:
+      - type: "password"
+        value: "Pa$$w0rd"
+    realmRoles:
+      - "default-roles-amq-broker-realm"
+    clientRoles:
+      amq-broker:
+        - "consumer"
+        - "producer"
+      realm-management:
+        - "amq-broker-realm"
+  realmSelector:
+    matchLabels:
+      app: rhsso

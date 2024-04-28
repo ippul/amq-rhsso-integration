@@ -4,18 +4,18 @@ kind: KeycloakClient
 metadata:
   name: amq-console
   labels:
-    app: sso
+    app: rhsso
 spec:
   realmSelector:
      matchLabels:
-      app: sso
+      app: rhsso
   roles:
     - name: admin
     - name: viewer
   client:
     clientId: amq-console
     name: amq-console
-    description: Client to manage access of AMQ Broker Management Consoles
+    description: amq-console
     protocol: openid-connect
     publicClient: true
     standardFlowEnabled: true

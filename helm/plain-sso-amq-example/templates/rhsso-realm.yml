@@ -4,13 +4,13 @@ kind: KeycloakRealm
 metadata:
   name: amq-broker-realm
   labels:
-    app: sso
+    app: rhsso
 spec:
   realm:
     id: "amq-broker-realm"
     realm: "amq-broker-realm"
     enabled: true
-    displayName: "Basic Realm for AMQ Broker and AMQ Console"
+    displayName: "amq-broker-realm"
   instanceSelector:
     matchLabels:
-      app: sso
+      app: rhsso

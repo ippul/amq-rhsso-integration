@@ -4,28 +4,25 @@ kind: KeycloakClient
 metadata:
   name: amq-broker
   labels:
-    app: sso
+    app: rhsso
 spec:
   realmSelector:
      matchLabels:
-      app: sso
+      app: rhsso
   roles:
     - name: admin
     - name: consumer
-    - name: sender
-    - name: guest
+    - name: producer
   client:
     clientId: amq-broker
     name: amq-broker
-    description: Client to consume or publish messages into an AMQ Broker
+    description: amq-broker
     protocol: openid-connect
     clientAuthenticatorType: client-secret
     secret: amq-broker-secret-value
     standardFlowEnabled: false
     directAccessGrantsEnabled: true
     serviceAccountsEnabled: false
-    defaultRoles:
-      - guest
     defaultClientScopes:
       - email
       - profile
