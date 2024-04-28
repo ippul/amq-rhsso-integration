@@ -25,7 +25,7 @@ spec:
         secret:
           secretName: credential-amq-broker-realm-ippul-example
       containers:
-        - name: amq-clients-example
+        - name: amq-consumer
           env:
            - name: WORK_TYPE
              value: CONSUMER

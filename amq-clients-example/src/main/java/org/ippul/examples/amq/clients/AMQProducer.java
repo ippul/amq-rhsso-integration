@@ -28,7 +28,7 @@ public class AMQProducer {
             try(final Session session  = connection.createSession()) {
                 final Destination destination = session.createQueue(queueName);
                 try(final MessageProducer producer = session.createProducer(destination)) {
-                    for(int count = 0; count < 10_000; count ++) {
+                    for(int count = 0; count < 1_000_000; count ++) {
                         final TextMessage message = session.createTextMessage("Test JMS Message " + UUID.randomUUID().toString());
                         System.out.println("Sending: " + message);
                         producer.send(message);
