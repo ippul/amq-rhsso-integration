@@ -4,7 +4,7 @@ kind: ActiveMQArtemis
 metadata:
   name: ex-aao
 spec:
-  version: 7.11.6
+  version: 7.11.5s
   deploymentPlan:
     extraMounts:
       configMaps:
